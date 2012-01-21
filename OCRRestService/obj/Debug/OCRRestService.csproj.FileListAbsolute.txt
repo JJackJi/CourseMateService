@@ -1,0 +1,5 @@
+C:\Users\Jack\Desktop\CourseMate\CourseMate\OCRRestService\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Jack\Desktop\CourseMate\CourseMate\OCRRestService\bin\OCRRestService.dll
+C:\Users\Jack\Desktop\CourseMate\CourseMate\OCRRestService\bin\OCRRestService.pdb
+C:\Users\Jack\Desktop\CourseMate\CourseMate\OCRRestService\obj\Debug\OCRRestService.dll
+C:\Users\Jack\Desktop\CourseMate\CourseMate\OCRRestService\obj\Debug\OCRRestService.pdb

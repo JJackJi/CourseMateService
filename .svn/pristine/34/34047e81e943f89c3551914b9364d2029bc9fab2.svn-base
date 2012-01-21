@@ -1,0 +1,29 @@
+﻿using System;
+using System.Drawing;
+using System.Diagnostics;
+using System.Drawing.Imaging;
+
+public class ImageParser
+{
+	public String Parse()
+	{
+        double scalefactor = 4.8;
+        Bitmap b = new Bitmap("C:/Users/Michael/Desktop/Clipboard01.png");
+        Bitmap result = new Bitmap((int)(b.Width * scalefactor), (int)(b.Height * scalefactor));
+        using (Graphics g = Graphics.FromImage((Image)result))
+            g.DrawImage(b, 0, 0, (int)(b.Width * scalefactor), (int)(b.Height * scalefactor));
+        result.Save("C:/Users/Michael/Desktop/Clipboard02.png", ImageFormat.Png);
+        b.Dispose();
+        result.Dispose();
+        Process p = new Process();
+        p.StartInfo.WorkingDirectory = "C:/Users/Michael/Desktop/";
+        p.StartInfo.FileName="C:/Program Files (x86)/Tesseract-OCR/tesseract.exe";
+        p.StartInfo.Arguments = "Clipboard02.png outputtext";
+        p.Start();
+        p.WaitForExit();
+        System.IO.StreamReader sr = new System.IO.StreamReader("C:/Users/Michael/Desktop/outputtext.txt");
+        return sr.ReadToEnd();
+	}
+
+
+}
