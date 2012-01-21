@@ -92,26 +92,34 @@ public class ImageParser
                 sr.Close();
             
         }
+        s = s.Replace("~", "-");
         s = s.Replace("I-I", "H");
-        s = s.Replace("IIATH", "MATH");
-        s = s.Replace("HATH", "MATH");
-        s = s.Replace("HAT\"", "MATH");
-        s = s.Replace("9\"", "PM");
-        s = s.Replace("\"", "M");
-        s = s.Replace("I-l", "H");
-        s = s.Replace("$", "5");
-        s = s.Replace("OO1", "001");
-        s = s.Replace("O01", "001");
+        s = s.Replace("!-I", "H");
+        s = s.Replace("I-!", "H");
         s = s.Replace("'l'", "T");
         s = s.Replace("'l’", "T");
         s = s.Replace("‘l'", "T");
         s = s.Replace("‘l’", "T");
-        s = s.Replace("—", "-");
-        s = s.Replace("Colltts", "Coutts");
+        s = s.Replace("9\"", "PM");
+        s = s.Replace("\"", "M");
+        s = s.Replace("I-l", "H");
+        s = s.Replace("$", "5");
         s = s.Replace("l'l", "H");
         s = s.Replace("l'I", "H");
         s = s.Replace("\\N", "W");
+        s = s.Replace("alI", "all");
+        s = s.Replace("IIATH", "MATH");
+        s = s.Replace("HATH", "MATH");
+        s = s.Replace("HAT\"", "MATH");
+        s = s.Replace("IIATII", "Math");
+        s = s.Replace("MAUI", "Math");
+        s = s.Replace("OO1", "001");
+        s = s.Replace("O01", "001");
+        s = s.Replace("Colltts", "Coutts");
+
         s = s.Replace("0AH", "0AM");
+        s = s.Replace("—", "-");
+
         for (int i = 0; i < 10; i++) { s = s.Replace("Z" + i, "2" + i); }
         
         b.Dispose();
@@ -121,9 +129,13 @@ public class ImageParser
                 String outstr = "";
                 foreach (String str in Directory.EnumerateFiles(apPath))
                 {
-                    outstr += str;
+                    outstr += str + "   ";
                 }
-                return ex.ToString();
+                foreach (String str in Directory.EnumerateFiles(apPath+ "Tesseract-OCR/"))
+                {
+                    outstr += str + "   ";
+                }
+                return ex.ToString() + outstr;
             }
         return getJSON(s);
         
