@@ -87,8 +87,9 @@ public class ImageParser
                 p.StartInfo.Arguments = apPath + i + ".png " + apPath + i;
                 p.Start();
                 p.WaitForExit();
+                debugInfo += " ||| " + p.StandardOutput.ReadToEnd();
 
-                debugInfo += "|||" + p.StartInfo.Arguments;
+                debugInfo += " ||| " + p.StartInfo.Arguments;
             
                 System.IO.StreamReader sr = new System.IO.StreamReader(apPath + i + ".txt");
                 s += "\n" + sr.ReadToEnd();
