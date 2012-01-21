@@ -34,6 +34,7 @@ public class ImageParser
 	{
         string apPath = "";
         String s = "";
+        String debugInfo = "";
         try
         {
         double scalefactor = 4.8;
@@ -72,6 +73,7 @@ public class ImageParser
         apPath = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath;
         for (int i = 0; i < columns; i++)
         {
+            
             Bitmap r1 = new Bitmap((int)(r[i].Width * scalefactor), (int)(b.Height * scalefactor));
             using (Graphics g = Graphics.FromImage((Image)r1))
                 g.DrawImage(b, new Rectangle(0, 0, (int)(r[i].Width * scalefactor), (int)(b.Height * scalefactor)), new Rectangle(new Point(r[i].Location.X, 0), new Size(r[i].Width, b.Height)), GraphicsUnit.Pixel);
@@ -82,10 +84,11 @@ public class ImageParser
                 
                 p.StartInfo.WorkingDirectory = apPath;
                 p.StartInfo.FileName = apPath + "Tesseract-OCR/tesseract.exe";
-                p.StartInfo.Arguments = i + ".png " + i;
+                p.StartInfo.Arguments = apPath + i + ".png " + apPath + i;
                 p.Start();
                 p.WaitForExit();
-            
+
+                debugInfo += "|||" + p.StartInfo.Arguments;
             
                 System.IO.StreamReader sr = new System.IO.StreamReader(apPath + i + ".txt");
                 s += "\n" + sr.ReadToEnd();
@@ -135,7 +138,7 @@ public class ImageParser
                 {
                     outstr += str + "   ";
                 }
-                return ex.ToString() + outstr;
+                return ex.ToString() + outstr + debugInfo;
             }
         return getJSON(s);
         
