@@ -85,11 +85,12 @@ public class ImageParser
                 p.StartInfo.WorkingDirectory = apPath;
                 p.StartInfo.FileName = apPath + "Tesseract-OCR/tesseract.exe";
                 p.StartInfo.Arguments = apPath + i + ".png " + apPath + i;
+
                 p.Start();
             
                 
                 p.WaitForExit();
-                debugInfo += " ||| " + p.TotalProcessorTime;
+                debugInfo += " ||| " + p.TotalProcessorTime + " " + p.ExitCode;
                 debugInfo += " ||| " + p.StandardError.ReadToEnd();
                 debugInfo += " ||| " + p.StartInfo.Arguments;
             
