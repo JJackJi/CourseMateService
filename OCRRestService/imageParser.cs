@@ -86,9 +86,11 @@ public class ImageParser
                 p.StartInfo.FileName = apPath + "Tesseract-OCR/tesseract.exe";
                 p.StartInfo.Arguments = apPath + i + ".png " + apPath + i;
                 p.Start();
+            
+                
                 p.WaitForExit();
-                debugInfo += " ||| " + p.StandardOutput.ReadToEnd();
-
+                debugInfo += " ||| " + p.TotalProcessorTime;
+                debugInfo += " ||| " + p.StandardError.ReadToEnd();
                 debugInfo += " ||| " + p.StartInfo.Arguments;
             
                 System.IO.StreamReader sr = new System.IO.StreamReader(apPath + i + ".txt");
